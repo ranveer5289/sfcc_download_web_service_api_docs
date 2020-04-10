@@ -1,0 +1,10 @@
+; config.ini
+[DEFAULT]
+HOSTNAME = xxxx-yyy.demandware.net
+USERNAME = username
+PASSWORD = password
+WEBREFERENCE_FOLDER = webreferences
+; without extension .wsdl
+WSDL_FILE_NAME = taxsvc
+; True or False
+GENERATE_JAVA_DOCS = True
