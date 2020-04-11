@@ -18,7 +18,7 @@ PASSWORD = config['DEFAULT']['PASSWORD']
 
 SERVER_PARTIAL_PATH = '/on/demandware.servlet/WFS/StudioWS/Sites/'
 WSDL_FOLDER_NAME = config['DEFAULT']['WEBREFERENCE_FOLDER']
-WSDL_NAME = config['DEFAULT']['WSDL_FILE_NAME'] # without extension
+WSDL_NAME = config['DEFAULT']['WSDL_FILE_NAME']  # without extension
 
 GENERATE_JAVA_DOCS = config.getboolean('DEFAULT', 'GENERATE_JAVA_DOCS')
 
@@ -68,7 +68,7 @@ print(colored('API docs zip downloaded to ' + DOWNLOADED_API_DOCS_PATH, 'green')
 
 # extract zip to local disk
 with ZipFile(DOWNLOADED_API_DOCS_PATH, 'r') as zipObj:
-   zipObj.extractall(EXTRACT_ZIP_DIR)
+    zipObj.extractall(EXTRACT_ZIP_DIR)
 print(colored('API docs zip extracted to ' + EXTRACT_ZIP_DIR, 'green'))
 
 
