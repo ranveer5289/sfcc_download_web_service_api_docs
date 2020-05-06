@@ -17,6 +17,11 @@ For `webreference` generated java files on server are located at https://xyz.dem
 
 For `webreference2` generated java files on server are located at https://xyz.demandware.net/on/demandware.servlet/WFS/StudioWS/Sites/webrefgen2/{WSDL_NAME}/{WSDL_NAME}.api.zip
 
+# Note
+The official feature from SFCC only works with JDK8. So, because of that limitation this script also relies on JDK8 being installed on the system. In versions above JDK8 javadoc is not generated from the compiled java class files.
+
+For Linux/OS X (jEnv)[https://www.jenv.be/] can be used to switch between different java versions.
+
 # Usage
 
 ### Installation

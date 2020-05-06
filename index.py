@@ -5,9 +5,24 @@ from termcolor import colored
 from zipfile import ZipFile
 import sys
 import os
+import re
 import subprocess
 import shutil
 import configparser
+
+
+def get_java_version():
+    java_version = None
+    try:
+        version = subprocess.check_output(['java', '-version'], stderr=subprocess.STDOUT)
+        pattern = r'\"(\d+\.\d+).*\"'
+        out = re.search(pattern, version.decode('utf-8')).groups()
+        if out and len(out) > 0:
+            java_version = out[0]
+    except:
+        print('exception while checking java version')
+    
+    return java_version
 
 config = configparser.ConfigParser()
 config.read('config.ini')
@@ -72,7 +87,16 @@ with ZipFile(DOWNLOADED_API_DOCS_PATH, 'r') as zipObj:
 print(colored('API docs zip extracted to ' + EXTRACT_ZIP_DIR, 'green'))
 
 
+
 if (GENERATE_JAVA_DOCS):
+    java_version = get_java_version()
+    if java_version is None:
+        print('Java version cannot be calculated. Check if java is in path')
+        sys.exit(0)
+    elif java_version != "1.8" :
+        print('Java version {0} is not supported. Only JDK8/1.8 is supported'.format(java_version))
+        sys.exit(0)
+
     API_DOCS_JAVA_FILES = EXTRACT_ZIP_DIR + os.path.sep + WSDL_FOLDER_NAME + os.path.sep + WSDL_NAME + os.path.sep
 
     # change current working directory so that is it easy to run javadoc command
@@ -88,3 +112,5 @@ if (GENERATE_JAVA_DOCS):
     print(colored('javadoc generated under ' + DOCUMENTATION_LOCATION, 'green'))
 else:
     print(colored('Javadoc generation disabled', 'yellow'))
+
+
